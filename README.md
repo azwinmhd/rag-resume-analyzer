@@ -32,7 +32,7 @@ This project demonstrates a real-world RAG implementation that:
 
 ### 1. Clone or download this project
 ```bash
-git clone https://github.com/yourusername/rag-resume-analyzer.git
+git clone https://github.com/azwinmhd/rag-resume-analyzer.git
 cd rag-resume-analyzer
 ```
 
