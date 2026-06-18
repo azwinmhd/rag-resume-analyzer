@@ -1,5 +1,7 @@
 # 🚀 RAG-Powered Resume Analyzer
 
+**[👉 Click Here to Try the Live App](https://rag-resume-analyzer-9ts4wydfstlbncx9avbpbh.streamlit.app/)**
+
 A cutting-edge Retrieval-Augmented Generation (RAG) application that analyzes how well your resume matches job descriptions using semantic search and AI.
 
 ## 📋 Overview
