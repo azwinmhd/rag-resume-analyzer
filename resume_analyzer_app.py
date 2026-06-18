@@ -1,155 +1,248 @@
 import streamlit as st
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
-from langchain_community.vectorstores import FAISS
-from langchain.chains.question_answering import load_qa_chain
-from langchain.prompts import PromptTemplate
+import asyncio
 import os
 from dotenv import load_dotenv
 
-# Load environment variables
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import FAISS
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain.chains import create_retrieval_chain
+from langchain_core.prompts import ChatPromptTemplate
+
+# PDF support
+try:
+    import pypdf
+    HAS_PYPDF = True
+except ImportError:
+    HAS_PYPDF = False
+
 load_dotenv()
 
-# Configure Streamlit page
+# Async patch
+try:
+    asyncio.get_running_loop()
+except RuntimeError:
+    asyncio.set_event_loop(asyncio.new_event_loop())
+
+# Page config
 st.set_page_config(
-    page_title="RAG Resume Analyzer",
-    page_icon="📄",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    page_title="ResumeAI | Smart Career Optimization Hub",
+    page_icon="🎯",
+    layout="wide"
 )
 
-st.title("🚀 RAG-Powered Resume & Job Fit Analyzer")
+# CSS
 st.markdown("""
-This tool uses **Retrieval-Augmented Generation (RAG)** to analyze how well your resume matches a job description.
-It intelligently extracts relevant sections and provides detailed insights.
-""")
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
-# Sidebar for settings
-st.sidebar.header("Settings")
-api_key = st.sidebar.text_input("Enter your Google Gemini API Key:", type="password")
-if api_key:
-    os.environ["GOOGLE_API_KEY"] = api_key
+html, body, [class*="css"] {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
 
-# Main content
+.hero-container {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.brand-badge {
+    display: inline-block;
+    background: rgba(0,163,255,0.1);
+    border: 1px solid rgba(0,163,255,0.3);
+    color: #00A3FF;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.main-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-top: 1rem;
+}
+
+.accent-gradient {
+    background: linear-gradient(90deg,#00A3FF,#00FFD1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #94A3B8;
+}
+
+.custom-card {
+    background: #1E293B;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.stButton > button {
+    width: 100%;
+    background: linear-gradient(90deg,#00A3FF,#00FFD1);
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# Hero Section
+st.markdown("""
+<div class="hero-container">
+    <span class="brand-badge">Next-Gen ATS Optimizer</span>
+    <h1 class="main-title">
+        Land More Interviews with
+        <span class="accent-gradient"> Smart AI Alignment</span>
+    </h1>
+    <p class="subtitle">
+        Instantly bridge the gap between your resume and hiring requirements.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+api_key = os.getenv("GOOGLE_API_KEY")
+
+resume_text = ""
+
+# Layout
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("📋 Your Resume")
-    resume_text = st.text_area(
-        "Paste your resume here:",
-        height=300,
-        placeholder="Paste your complete resume..."
+    st.markdown('<div class="custom-card">', unsafe_allow_html=True)
+
+    st.subheader("📄 Upload Resume")
+
+    uploaded_file = st.file_uploader(
+        "Upload Resume",
+        type=["pdf", "txt"],
+        label_visibility="collapsed"
     )
+
+    if uploaded_file:
+
+        if uploaded_file.type == "text/plain":
+            resume_text = uploaded_file.read().decode("utf-8")
+
+        elif uploaded_file.type == "application/pdf":
+
+            if HAS_PYPDF:
+                reader = pypdf.PdfReader(uploaded_file)
+
+                resume_text = "\n".join(
+                    page.extract_text() or ""
+                    for page in reader.pages
+                )
+
+        st.success("Resume uploaded successfully!")
+
+    st.markdown('</div>', unsafe_allow_html=True)
 
 with col2:
+    st.markdown('<div class="custom-card">', unsafe_allow_html=True)
+
     st.subheader("💼 Job Description")
+
     job_desc = st.text_area(
-        "Paste the job description here:",
-        height=300,
-        placeholder="Paste the job description..."
+        "Paste Job Description",
+        height=250,
+        label_visibility="collapsed"
     )
 
-# Analysis button
-if st.button("🔍 Analyze Match", use_container_width=True):
-    if not resume_text or not job_desc:
-        st.error("Please provide both resume and job description!")
-    elif not api_key:
-        st.error("Please enter your Google Gemini API Key in the sidebar!")
-    else:
-        try:
-            with st.spinner("Analyzing resume fit... This may take a moment..."):
-                
-                # Step 1: Split resume into chunks
-                text_splitter = RecursiveCharacterTextSplitter(
-                    chunk_size=1000,
-                    chunk_overlap=200
-                )
-                resume_chunks = text_splitter.split_text(resume_text)
-                
-                # Step 2: Create embeddings and vector store
-                embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
-                vector_store = FAISS.from_texts(resume_chunks, embedding=embeddings)
-                
-                # Step 3: Initialize LLM
-                llm = ChatGoogleGenerativeAI(
-                    model="gemini-1.5-flash",
-                    temperature=0.3,
-                    google_api_key=api_key
-                )
-                
-                # Step 4: Create RAG chain for matching analysis
-                match_prompt = PromptTemplate(
-                    input_variables=["context", "question"],
-                    template="""
-                    Based on the resume sections provided below, analyze how well the candidate matches the job requirements.
-                    
-                    Resume Context:
-                    {context}
-                    
-                    Job Description:
-                    {question}
-                    
-                    Please provide:
-                    1. Overall Match Score (0-100%)
-                    2. Key Matching Skills
-                    3. Missing Skills/Experience
-                    4. Strengths for this role
-                    5. Areas to improve
-                    
-                    Be specific and actionable.
-                    """
-                )
-                
-                # Step 5: Retrieve relevant resume sections
-                relevant_docs = vector_store.similarity_search(job_desc, k=5)
-                
-                # Step 6: Create chain and run analysis
-                chain = load_qa_chain(
-                    llm,
-                    chain_type="stuff",
-                    prompt=match_prompt,
-                    verbose=False
-                )
-                
-                response = chain(
-                    {
-                        "input_documents": relevant_docs,
-                        "question": job_desc
-                    },
-                    return_only_outputs=True
-                )
-                
-                # Display results
-                st.success("Analysis Complete!")
-                
-                st.markdown("---")
-                st.subheader("📊 Analysis Results")
-                st.markdown(response["output_text"])
-                
-                # Additional insights
-                st.markdown("---")
-                st.subheader("💡 Next Steps")
-                st.info("""
-                Based on this analysis:
-                1. Highlight the matching skills in your resume
-                2. Address the missing skills through learning/projects
-                3. Prepare examples that demonstrate your strengths
-                4. Practice answering questions about the identified gaps
-                """)
-                
-        except Exception as e:
-            st.error(f"Error during analysis: {str(e)}")
-            st.info("Make sure your Google Gemini API key is valid and has access to the embedding and chat models.")
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# Footer
-st.markdown("---")
-st.markdown("""
-### How it works:
-1. **Text Chunking**: Your resume is split into semantic chunks
-2. **Embeddings**: Each chunk is converted to vector embeddings using Google's embedding model
-3. **Similarity Search**: Job description is matched against resume chunks
-4. **RAG Analysis**: Relevant resume sections are passed to Gemini for intelligent analysis
-5. **Detailed Insights**: Get actionable feedback on your fit
+# Analyze Button
+if st.button("📊 Scan & Analyze Application Fit"):
 
-Built with LangChain + Google Gemini + FAISS
+    if not resume_text:
+        st.error("Please upload a resume.")
+        st.stop()
+
+    if not job_desc.strip():
+        st.error("Please enter a job description.")
+        st.stop()
+
+    if not api_key:
+        st.error("GOOGLE_API_KEY not found in .env file.")
+        st.stop()
+
+    try:
+        with st.spinner("Analyzing resume..."):
+
+            splitter = RecursiveCharacterTextSplitter(
+                chunk_size=1000,
+                chunk_overlap=200
+            )
+
+            chunks = splitter.split_text(resume_text)
+
+            embeddings = HuggingFaceEmbeddings(
+                model_name="all-MiniLM-L6-v2"
+            )
+
+            vector_store = FAISS.from_texts(
+                chunks,
+                embeddings
+            )
+
+            llm = ChatGoogleGenerativeAI(
+                model="gemini-2.5-flash",
+                google_api_key=api_key,
+                temperature=0.3
+            )
+
+            prompt = ChatPromptTemplate.from_template("""
+You are an expert ATS and recruitment analyst.
+
+Resume:
+{context}
+
+Job Description:
+{input}
+
+Provide:
+
+1. Match Percentage (%)
+2. Key Matching Skills
+3. Missing Skills
+4. Strengths
+5. Improvement Suggestions
+6. Final Recommendation
+
+Format the response professionally.
 """)
+
+            document_chain = create_stuff_documents_chain(
+                llm,
+                prompt
+            )
+
+            retrieval_chain = create_retrieval_chain(
+                vector_store.as_retriever(),
+                document_chain
+            )
+
+            response = retrieval_chain.invoke({
+                "input": job_desc
+            })
+
+            st.markdown("## 📈 ATS Analysis")
+
+            st.markdown(
+                f"""
+                <div class="custom-card">
+                {response["answer"]}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+    except Exception as e:
+        st.error(f"Analysis error: {str(e)}")
