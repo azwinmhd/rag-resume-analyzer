@@ -415,8 +415,44 @@ else:  # Batch Processing Mode
                     with st.expander(f"🔍 {row['Candidate']} - {row['Match Score']}%"):
                         st.write(row['Analysis'])
                 
-                # Download results
-                csv = df.to_csv(index=False)
+                                # Download results - Create better formatted CSV
+                csv_data = []
+                for result in results:
+                    # Parse analysis to extract skills
+                    analysis = result.get("Analysis", "")
+                    
+                    matching_skills = ""
+                    missing_skills = ""
+                    
+                    # Extract matching skills
+                    if "Matching Skills" in analysis:
+                        start = analysis.find("Matching Skills (")
+                        if start != -1:
+                            start = analysis.find(":", start) + 1
+                            end = analysis.find("\n", start)
+                            if end == -1:
+                                end = analysis.find("Missing", start)
+                            matching_skills = analysis[start:end].strip()
+                    
+                    # Extract missing skills
+                    if "Missing Skills" in analysis:
+                        start = analysis.find("Missing Skills (")
+                        if start != -1:
+                            start = analysis.find(":", start) + 1
+                            end = len(analysis)
+                            missing_skills = analysis[start:end].strip()
+                    
+                    csv_data.append({
+                        "Candidate": result["Candidate"],
+                        "Match Score (%)": result["Match Score"],
+                        "Matching Skills": matching_skills,
+                        "Missing Skills": missing_skills
+                    })
+                
+                # Create DataFrame and convert to CSV
+                csv_df = pd.DataFrame(csv_data)
+                csv = csv_df.to_csv(index=False)
+                
                 st.download_button(
                     label="📥 Download Results as CSV",
                     data=csv,
