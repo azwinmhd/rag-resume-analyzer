@@ -48,108 +48,79 @@ def process_batch_resumes(zip_file, job_desc, api_key):
     
     results = []
     
-    # Extract ZIP
+    if not job_desc or not job_desc.strip():
+        return [{"Candidate": "ERROR", "Match Score": 0, "Analysis": "Job description is empty!"}]
+    
     with zipfile.ZipFile(zip_file, 'r') as zip_ref:
         file_list = zip_ref.namelist()
         
-        # Process each file
         for file_name in file_list:
-            if file_name.endswith(('.pdf', '.txt')):
-                file_content = zip_ref.read(file_name)
+            # Skip folders and non-resume files
+            if file_name.endswith('/'):
+                continue
                 
-                # Extract text
-                resume_text = ""
-                
-                if file_name.endswith('.txt'):
+            if not file_name.endswith(('.pdf', '.txt')):
+                continue
+            
+            file_content = zip_ref.read(file_name)
+            resume_text = ""
+            
+            # Extract text
+            if file_name.endswith('.txt'):
+                try:
                     resume_text = file_content.decode('utf-8')
+                except:
+                    continue
                     
-                elif file_name.endswith('.pdf'):
-                    if HAS_PYPDF:
+            elif file_name.endswith('.pdf'):
+                if HAS_PYPDF:
+                    try:
                         pdf_file = BytesIO(file_content)
                         reader = pypdf.PdfReader(pdf_file)
                         resume_text = "\n".join(
                             page.extract_text() or ""
                             for page in reader.pages
                         )
+                    except:
+                        continue
+            
+            # Skip if no text extracted
+            if not resume_text or not resume_text.strip():
+                results.append({
+                    "Candidate": file_name.replace('.pdf', '').replace('.txt', ''),
+                    "Match Score": 0,
+                    "Analysis": "Could not extract text from resume"
+                })
+                continue
+            
+            try:
+                # Calculate score using our algorithm
+                score = calculate_final_score(resume_text, job_desc)
+                matching_skills = get_matching_skills(resume_text, job_desc)
+                missing_skills = get_missing_skills(resume_text, job_desc)
                 
-                if resume_text.strip():
-                    try:
-                        # Calculate score using our algorithm (NOT just LLM)
-                        score = calculate_final_score(resume_text, job_desc)
-                        matching_skills = get_matching_skills(resume_text, job_desc)
-                        missing_skills = get_missing_skills(resume_text, job_desc)
-                        
-                        # Process for detailed analysis
-                        splitter = RecursiveCharacterTextSplitter(
-                            chunk_size=1000,
-                            chunk_overlap=200
-                        )
-                        chunks = splitter.split_text(resume_text)
-                        
-                        embeddings = HuggingFaceEmbeddings(
-                            model_name="all-MiniLM-L6-v2"
-                        )
-                        vector_store = FAISS.from_texts(chunks, embeddings)
-                        
-                        # Get relevant documents
-                        relevant_docs = vector_store.similarity_search(job_desc, k=5)
-                        context = "\n".join([doc.page_content for doc in relevant_docs])
-                        
-                        llm = ChatGoogleGenerativeAI(
-                            model="gemini-2.5-flash",
-                            google_api_key=api_key,
-                            temperature=0.3
-                        )
-                        
-                        prompt = ChatPromptTemplate.from_template("""
-You are an expert ATS analyst. Provide brief analysis.
-
-Resume Context:
-{context}
-
-Job Description:
-{input}
-
-Provide:
-1. Key Strengths
-2. Missing Skills
-3. Recommendation
-
-Be concise (5 lines max).
-""")
-                        
-                        formatted_prompt = prompt.format_messages(
-                            context=context,
-                            input=job_desc
-                        )
-                        response = llm.invoke(formatted_prompt)
-                        
-                        # Build summary
-                        analysis_summary = f"""
+                # Build simple summary (no LLM for now)
+                analysis_summary = f"""
 CALCULATED SCORE: {score}%
 
-Matching Skills: {', '.join(matching_skills) if matching_skills else 'None'}
-Missing Skills: {', '.join(missing_skills) if missing_skills else 'None'}
-
-AI Analysis:
-{response.content}
+Matching Skills ({len(matching_skills)}): {', '.join(matching_skills) if matching_skills else 'None'}
+Missing Skills ({len(missing_skills)}): {', '.join(missing_skills) if missing_skills else 'None'}
 """
-                        
-                        results.append({
-                            "Candidate": file_name.replace('.pdf', '').replace('.txt', ''),
-                            "Match Score": score,
-                            "Analysis": analysis_summary
-                        })
-                    
-                    except Exception as e:
-                        results.append({
-                            "Candidate": file_name,
-                            "Match Score": 0,
-                            "Analysis": f"Error: {str(e)}"
-                        })
+                
+                results.append({
+                    "Candidate": file_name.replace('.pdf', '').replace('.txt', ''),
+                    "Match Score": score,
+                    "Analysis": analysis_summary
+                })
+                
+            except Exception as e:
+                results.append({
+                    "Candidate": file_name,
+                    "Match Score": 0,
+                    "Analysis": f"Error: {str(e)}"
+                })
     
-    return results
-
+    return results if results else [{"Candidate": "ERROR", "Match Score": 0, "Analysis": "No resumes found in ZIP"}]
 # Page config
 st.set_page_config(
     page_title="ResumeAI | Smart Career Optimization Hub",
