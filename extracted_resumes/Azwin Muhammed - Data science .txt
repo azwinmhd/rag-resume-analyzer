@@ -1,0 +1,70 @@
+AZWIN MUHAMMED 
+Kerala, India 
++91 808 970 7348 
+ 
+azwinmuhammed2005@gmail.com www.linkedin.com/in/azwin-muhammed https://github.com/azwinmhd 
+Summary 
+Aspiring Data Scientist with expertise in predictive modeling and deep learning. Developed a neural network architecture for revenue 
+optimization achieving 94% R-squared value, presented at the IC-AISSTMH 2026 international conference. Experienced across 3 
+internships spanning sports analytics and BI. Recognized for academic excellence and leadership as a KCLAS Young Ambassador a nd A-
+Grade NCC Cadet. 
+Education 
+Kumaraguru College of Liberal Arts & Science | Bachelor of Science  Grad May '26 
+Data Science 
+(Relevant coursework: Machine Learning; Statistics & Probability; Data Visualization; Deep Learning & NLP; Experimental Design) 
+ 
+Skills 
+ 
+Programming Languages: Python, SQL, R 
+       Data Analysis & Manipulation: Pandas, NumPy, SciPy 
+Machine Learning & AI: Scikit-learn, XGBoost, TensorFlow, PyTorch, Neural Networks 
+Data Visualization: Matplotlib, Seaborn, Plotly 
+Web & API Development: React, FastAPI, Streamlit  
+Language: Malayalam, English, Tamil, French, Hindi 
+Experience 
+Data Analytics Intern · Codtech IT Solutions                                                                                                                Dec 2024-Jan 2025 
+• Built interactive dashboards and sentiment analysis pipelines for predictive modeling, improving data accessibility for business 
+teams. 
+• Applied NLP techniques in Python to extract actionable insights from large volumes of unstructured customer 
+feedback. 
+• Developed predictive analytics solutions to address real-world business challenges using big data analysis. Business Intelligence Intern · Amypo Technologies                                                                                                            Feb 2025 
+• Designed Power BI reports providing real-time visibility into key business metrics, used by stakeholders for weekly decision 
+reviews. 
+• Cleaned and modeled large datasets in Excel to support complex analytical workflows and ensure data accuracy.  
+• Transformed raw organizational data into clear visual insights, reducing reporting time for the analytics team. 
+ 
+      Data Analyst Intern · SoftFruit Solutions                                                                                                                                  May 2025 
+ 
+• Deployed Power BI dashboards enabling stakeholders to monitor KPIs and identify performance trends at a glance. 
+• Built Python and R linear regression models to forecast business outcomes, directly supporting data-driven planning. 
+• Communicated complex analytical findings to non-technical audiences, improving cross-team alignment. 
+Technical Projects 
+       Arena Insight | Predictive Venue Analytics · MLP Neural Network 
+• Architecture Integration: Integrated a Multi-Layer Perceptron (MLP) architecture to forecast peak usage times for sports 
+venues, enabling data-driven resource allocation. 
+• Quantified Performance: Achieved 94% predictive accuracy by training the model on a dataset of 10,000+ booking entries, 
+effectively capturing non-linear patterns in historical usage data. 
+• Actionable Insights: Analyzed complex datasets to provide stakeholders with actionable insights for revenue 
+optimization, directly informing venue management strategies. 
+      Dynamic Navigator | Capstone Project · Coupon Acceptance Prediction 
+• Developed a dual-tier machine learning pipeline using Logistic Regression and Gradient Boosting to predict coupon 
+acceptance with 73% accuracy. 
+• Engineered a Feature Transformation Engine to quantize behavioral habits and situational context (weather, time, 
+destination) from 12,000+ driving scenarios. 
+• Optimized user experience by implementing a Precision Filter to minimize "marketing spam" and notification fatigue. 
+ 
+Certifications & Awards 
+HONORS & LEADERSHIP 
+• Young Ambassador Award | School of Data Science, KCLAS (Feb 2026): Recognized for academic excellence and leadership.  
+• NCC Lance Corporal (IGC Badge): Demonstrated disciplined leadership and success in regional competitions.  
+• Certificate of Recognition: Awarded for winning prizes in national and international extracurricular competitions.  
+• NCC B Certificate – Grade A (2025) · Passed the Ministry of Defence examination under Tamilnadu, Puducherry & Andaman 
+Nicobar Directorate, 5 (TN) Girls BN NCC. 
+ 
+          CERTIFICATIONS 
+• Data Science: IBM Professional, NPTEL (Python for Data Science). 
+• Specialized: International Supply Chains (U. of Colorado Boulder), GenAI Job Simulation. 
+        
+          RESEARCH & PUBLICATIONS 
+• IC-AISSTMH 2026 (Feb 2026): Authored and presented "The Predictive Pitch" at the International Multidisciplinary Conference on AI-
+Driven Sustainability. Developed a Neural Network model for sports venue revenue optimization. 

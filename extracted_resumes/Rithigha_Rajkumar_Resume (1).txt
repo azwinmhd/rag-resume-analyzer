@@ -1,0 +1,46 @@
+RITHIGHA RAJKUMAR  
+Phone: +91 9080661735 Email: rajkumarrithigha@gmail.com 
+Address: 8/261, Devangapuram, Erode - 638451 GitHub: github.com/ghaneshwaran 
+PROFILE 
+Motivated Data Science graduate with over a year of hands-on, practical experience in machine learning, data 
+analysis, and applied AI through self-driven and academic projects. Skilled in building end-to-end data pipelines, 
+predictive models, and analytics dashboards using Python, Excel, and Power BI. Strong communicator and quick 
+learner with solid problem-solving and leadership skills, seeking an entry-level Data Analyst role to apply and grow 
+technical expertise. 
+WORK EXPERIENCE 
+AI/ML Project — Earthquake Risk Prediction & Early Warning AnalysisJan 2025 – Jun 2025 
+Independent Data Analytics & Machine Learning Project 
+• Analyzed a global earthquake dataset spanning 1990–2023, covering magnitude, depth, location, and 
+frequency, to uncover seismic patterns and identify high-risk zones. 
+• Cleaned, structured, and engineered features from large-scale geospatial and seismic data to prepare it for 
+predictive modeling. 
+• Built and evaluated machine learning models in Python (using libraries such as pandas, NumPy, and scikit-
+learn) to estimate earthquake risk levels based on magnitude-depth correlations. 
+• Developed logic for real-time risk analysis and early-warning support, including a tsunami-risk indicator 
+derived from seismic depth and magnitude thresholds. 
+• Created visualizations of seismic trends and risk concentration to make findings interpretable for non-
+technical stakeholders. 
+• Strengthened practical skills in data wrangling, statistical analysis, and model evaluation , translating raw 
+scientific data into actionable risk insights. 
+Smart Travel Companion App — Safety & Budget Recommendation SystemJul 2025 – Dec 2025 
+Independent Data Analytics & Application Development Project 
+• Designed and developed a smart travel companion application aimed at solo travelers and budget-
+conscious users. 
+• Built a budget-based recommendation engine to suggest affordable hotels and food options aligned with 
+user spending limits and preferences. 
+• Implemented a safety-analysis module using sentiment analysis on location and review data to flag safer 
+routes, neighborhoods, and accommodations. 
+• Integrated offline map access, voice-alert notifications, and emergency-assistance features to support 
+travelers in low-connectivity environments. 
+• Applied AI/ML and data analytics techniques to power route recommendations, balancing safety, cost, and 
+convenience for end users. 
+• Managed the project end-to-end — from data collection and processing to feature design and integration — 
+gaining practical exposure to the full analytics-to-application workflow. 
+EDUCATION 
+Bachelor's Degree in Data Science 2023 – 2026 
+Kumaraguru College of Liberal Arts and Science, Coimbatore 
+Completed a Bachelor's degree in Data Science, building a strong foundation in statistics, machine learning, data 
+analysis, and programming. 
+SKILLS 
+Data Analysis • Excel  •  Power BI  •  Python  •  Machine Learning  •  Problem Solving  •  Communication  •  
+Leadership 

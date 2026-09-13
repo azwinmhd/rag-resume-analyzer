@@ -1,0 +1,57 @@
+      MAHALAKSHMI M   
+     Coimbatore ,India    
+  mahalakshmimc11@gmail.com  |   6380583674 |   LinkedIn: LinkedIn/mahamc11  
+Github:github.com/mahamc11  
+   
+PROFESSIONAL SUMMARY   
+Motivated and analytical Bsc . Data Science Graduate with a strong foundation in Python, machine learning, and data analytics. 
+Experienced in data preprocessing, NLP, AI model development, applications. Passionate about using AI for solving real-world 
+problems. Seeking opportunities in internships, research, or industry collaborations.  
+   
+SKILLS & TECHNOLOGIES   
+ Programming Languages: Python, SQL, R  _,HTML and CSS (with basics)   
+ Data Analysis & Manipulation: Pandas, NumPy, Dask   
+ Machine Learning & AI: Scikit-learn, XGBoost, TensorFlow, PyTorch   
+ Data Visualization: Matplotlib, Seaborn, Plotly   
+ Web & API Development: Flask, FastAPI, Streamlit 
+ SEO Tools: Google Analytics, Google Search Console, Keyword Planner(Basics).  
+   
+PROJECTS   
+1.AI-Based Music Generation Tool   
+ Description: Developed an AI-powered system that generates music based on text input or mood classification.   
+ Technologies: Python, TextBlob/VADER, pydub/pygame, Flask/Streamlit  
+ Key Features:   
+NLP-based sentiment analysis for mood classification.   
+AI-generated music selection based on user input.   
+Web-based interactive interface.   
+ 2.CyberShield – AI-Powered Cybersecurity Solution   
+ Description: Real-time cybersecurity system detecting online threats like harassment, phishing, and deepfake profiles.         
+Technologies: FastAPI, PostgreSQL/Firebase, RoBERTa, XGBoost, YOLOv8/OpenCV    
+ Key Features:   
+AI-driven real-time threat detection and prevention.   
+NLP-based toxic speech and phishing detection.   
+Scalable backend architecture.  
+   
+   
+EXPERIENCE 
+SEO Analyst Intern  
+Proplus Logics Solutions Pvt. Ltd. | Coimbatore | Nov 2025 – Jan 2026 
+• Completed SEO Internship in Digital Marketing at ProPlus Logics Solutions Pvt. Ltd. with hands-on industry exposure.  
+• Experienced in On-page & Off-page SEO, keyword research, and competitor analysis.  
+• Worked on content optimization, SEO-friendly writing, and website audits.  
+• Tracked website performance using analytics tools and understood search engine ranking factors.  
+• Gained strong analytical, technical, and data-driven marketing skills through real-time projects  
+Tools & Technologies: MS Excel, Google Analytics, Google Search Console, Keyword Research Tools.  
+Data Analyst Intern  
+Yanee Technologies Pvt. Ltd. | Coimbatore | May 2025 – June 2025  
+• Assisted in data analysis for Egmore Constituency development projects.  
+• Utilized Python, R Programming, and Power BI to clean, process, and visualize constituency data.  
+• Built dashboards in Power BI for voter demographics and public service analytics.  
+• Conducted exploratory data analysis (EDA) to support decision-making in public policy initiatives.  
+• Collaborated with team members to provide actionable insights from constituency data sets. Tools & 
+Technologies: Python | R | Power BI | MS Excel  
+  
+   
+EDUCATION 
+Kumaraguru College Of Liberal Arts And Science                            Coimbatore,Tamilnadu                              
+Bsc. DATA SCIENCE                                                         2023-2026   

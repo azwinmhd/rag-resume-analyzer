@@ -1,0 +1,84 @@
+Dharshini Vijayakkumar 
+Data Science Student | Aspiring Data Scientist / Analyst 
+A passionate data science student with experience in machine learning, digital marketing, and hackathons. Skilled 
+in Python, SQL, Power BI, and Excel, with a published book chapter in deep learning and proven leadership in 
+event coordination. Eager to apply analytical skills in real-world projects. 
+dharshinivijay290@gmail.com  |  9080103847  |  Coimbatore, India 
+SKILLS 
+Technical: Python, SQL, Power BI, Excel, Data Visualization, EEG Signal Processing, Deep Learning  
+Business & Marketing: Digital Marketing, SEO, Social Media Management, Entrepreneurship 
+Soft Skills: Leadership, Event Coordination, Communication, Multitasking, Team Collaboration  
+EDUCATION 
+B.Sc. Data Science 06/2023 – 06/2026 
+Kumaraguru College of Liberal Arts and Science, Coimbatore Coimbatore, India 
+WORK EXPERIENCE 
+AI/ML Research Intern May 2024 – June , 2025 
+Debrique Creative Labs Pvt. Ltd. (Modulus Housing) Chennai, India 
+• Researched global smart housing models from Brazil, Kenya & Singapore for scalable adoption in India.  
+• Proposed AI/ML-powered site selection and IoT-based monitoring for disaster-prone and low-income zones. 
+ 
+Founder – Small Business 03/2024 – Present 
+Pastel.co Coimbatore, India 
+• Independently managed the entire business from scratch, handling product design, marketing, and logistics 
+single-handedly. 
+• Introduced custom jewelry designs based on market trends and customer preferences.  
+• Successfully launched and managed a handmade jewelry brand specializing in bead bracelets, phone 
+charms, and customized accessories. 
+ 
+SEO & Digital Marketing Intern 11/2025 – 12/2025 
+ProPlus Logics Pvt. Ltd. Coimbatore, India 
+• Worked on SEO backlinking and on-page optimization tasks. 
+• Created and optimized on-site blogs for search engine ranking. 
+• Tracked keyword positions and analyzed SEO performance metrics. 
+PUBLICATION 
+Chapter Author 2026 
+Bhumi Publication – Intelligent Computing and AI Frontiers  
+• Published a book chapter titled "EEG Emotion Recognition Using Deep Learning."  
+• Applied deep learning techniques to EEG signal data for human emotion recognition and developed an 
+Emotion Analysis System with interactive visualization of predictions. 
+• Performed EEG signal processing, emotion classification, and generated AI-driven insights. 
+• Collaborated with co-author under academic mentorship to successfully complete the research. 
+ 
+ 
+ 
+ 
+ 
+ LEADERSHIP & EVENT MANAGEMENT 
+Workshop Coordinator & Team Member 2026 
+Yugam 2026 – Techno-Cultural Fest  
+• Coordinated and managed 80+ workshops as part of a large-scale techno-cultural fest, leading end-to-end 
+execution including planning, scheduling, and speaker coordination. 
+• Managed participant engagement, registrations, and on-ground operations efficiently under high-pressure 
+environments. 
+• Contributed to logistics, coordination, and communication with participants and speakers as an active team 
+member. 
+• Demonstrated strong leadership, communication, and multitasking skills throughout the event.  
+PERSONAL PROJECTS 
+Accident-Prone Zones Analysis (Mini Project) 
+• Analyzed accident data using Python and Excel and Data Visualization to identify high -risk zones and 
+improve road safety. 
+Spotify Data Analysis (Power BI Project) 
+• Analyzed Spotify data (2014–2022) to uncover music trends and created interactive dashboards. 
+She Secure – Cyber Threat Monitoring System (Hackathon) 
+• Developed an NLP-based system to detect cyber threats in messages and enhance online safety; reached 
+Hackathon Finals. 
+Digital Marketing for a Gold Retail Shop 
+• Designed a digital marketing strategy to enhance Google Business profile engagement and boost online 
+visibility for retail growth. 
+CERTIFICATIONS 
+• Artificial Intelligence Workshop – TOP ENGINEERS – INDIA & MECHANICA 2024, IIT Madras 
+• AI-Powered Business Analytics Course – National University of Singapore (NUS) 
+• AI in Healthcare Workshop – TOP ENGINEERS – INDIA & MECHANICA 2024, IIT Madras 
+VOLUNTEER & ORGANIZATIONS 
+• Community Outreach Volunteer – Gondi Community (TNUHDB) | August 2023 
+• Event Volunteer – Yuva KCLAS Blitz Leadership Program | September 2024 
+ACHIEVEMENTS 
+• Data Science Project – Analyzed accident data using Python & Excel for visualization and risk assessment.  
+• Hackathon Finalist – Developed She Secure, an NLP-based cybersecurity system for women's safety. 
+• Entrepreneurship – Successfully launched and managed Pastel.co, a handmade jewelry business. 
+• Published Book Chapter – "EEG Emotion Recognition Using Deep Learning" in Intelligent Computing and AI 
+Frontiers. 
+LANGUAGES 
+English – Full Professional Proficiency  |  Tamil – Native Bilingual Proficiency 
+INTERESTS 
+DIY Crafts  |  Expressive Art  |  Music & Singing 
